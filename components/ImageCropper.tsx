@@ -18,7 +18,9 @@ const ImageCropper: React.FC<ImageCropperProps> = ({
   const [crop, setCrop] = useState<Crop>({
     unit: "%",
     width: 100,
-    aspect: 16 / 9,
+    height: 100,
+    x: 0,
+    y: 0,
   })
   const imageRef = useRef<HTMLImageElement>(null)
   const [isCropped, setIsCropped] = useState(false)
