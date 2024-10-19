@@ -39,13 +39,12 @@ const ReviewApp = () => {
   })
   const [showCropper, setShowCropper] = useState(false)
   const [tempImage, setTempImage] = useState("")
-  const [charCount, setCharCount] = useState(0)
   const previewRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    setCharCount((e.target as HTMLTextAreaElement).value.length)
-  }
+  // const handleTextareaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  //   setCharCount((e.target as HTMLTextAreaElement).value.length)
+  // }
 
   // Watch for form changes and update reviewData
   React.useEffect(() => {
@@ -188,13 +187,14 @@ const ReviewApp = () => {
               })}
               placeholder="Review (max 300 characters)"
               maxLength={300}
-              onChange={handleTextareaChange}
             />
             <div
               className={`flex items-center justify-end text-sm ${
-                charCount >= 300 ? "text-red-500" : "text-muted-foreground"
+                reviewData.reviewText.length >= 300
+                  ? "text-red-500"
+                  : "text-muted-foreground"
               }`}>
-              {charCount}/300
+              {reviewData.reviewText.length}/300
             </div>
             {errors.reviewText && (
               <p className="text-red-500">{errors.reviewText.message}</p>
